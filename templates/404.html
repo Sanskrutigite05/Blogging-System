@@ -1,0 +1,400 @@
+        <!--Custom error page just make a file named 'error code.html' and in that you can design however u like!-->
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at center, #d7efef 0%, #c8e6e6 45%, #b7d8d9 100%);
+        overflow: hidden;
+        }
+
+        .container {
+        width: 100%;
+        max-width: 1200px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 40px;
+        position: relative;
+        }
+
+        .text-section {
+        max-width: 450px;
+        z-index: 2;
+        }
+
+        .text-section h1 {
+        font-size: 110px;
+        color: #2d6468;
+        line-height: 1;
+        letter-spacing: 2px;
+        }
+
+        .text-section h2 {
+        font-size: 42px;
+        color: #f06b1a;
+        margin: 12px 0 20px;
+        font-weight: 500;
+        }
+
+        .text-section p {
+        font-size: 18px;
+        color: #496a6d;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        }
+
+        .buttons {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        }
+
+        .btn {
+        text-decoration: none;
+        padding: 14px 26px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: 0.3s ease;
+        display: inline-block;
+        }
+
+        .btn-primary {
+        background: #f06b1a;
+        color: white;
+        box-shadow: 0 8px 20px rgba(240, 107, 26, 0.25);
+        }
+
+        .btn-primary:hover {
+        background: #d85d14;
+        transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+        background: rgba(45, 100, 104, 0.1);
+        color: #2d6468;
+        border: 2px solid rgba(45, 100, 104, 0.2);
+        }
+
+        .btn-secondary:hover {
+        background: rgba(45, 100, 104, 0.18);
+        transform: translateY(-2px);
+        }
+
+        .illustration {
+        position: relative;
+        width: 420px;
+        height: 420px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        }
+
+        /* Snow Ground */
+        .snow {
+        position: absolute;
+        bottom: 18px;
+        width: 280px;
+        height: 55px;
+        background: #edf4f4;
+        border-radius: 50%;
+        box-shadow: inset -10px -5px 0 #d3e6e6;
+        }
+
+        .shadow {
+        position: absolute;
+        bottom: 32px;
+        left: 95px;
+        width: 230px;
+        height: 35px;
+        background: rgba(66, 146, 163, 0.45);
+        border-radius: 50%;
+        }
+
+        /* Penguin */
+        .penguin {
+        position: absolute;
+        left: 50px;
+        bottom: 55px;
+        width: 165px;
+        height: 210px;
+        }
+
+        .body {
+        position: absolute;
+        width: 165px;
+        height: 210px;
+        background: #3f4a63;
+        border-radius: 85px 85px 75px 75px;
+        }
+
+        .belly {
+        position: absolute;
+        width: 110px;
+        height: 145px;
+        background: #f7f7f7;
+        border-radius: 60px;
+        top: 32px;
+        left: 27px;
+        }
+
+        .eye {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #3a4050;
+        border-radius: 50%;
+        top: 60px;
+        }
+
+        .eye.left { left: 50px; }
+        .eye.right { right: 50px; }
+
+        .beak {
+        position: absolute;
+        top: 74px;
+        left: 63px;
+        width: 0;
+        height: 0;
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-top: 22px solid #f6a21a;
+        transform: rotate(180deg);
+        }
+
+        .wing {
+        position: absolute;
+        width: 28px;
+        height: 85px;
+        background: #2d3445;
+        border-radius: 20px;
+        top: 65px;
+        }
+
+        .wing.left {
+        left: -12px;
+        transform: rotate(12deg);
+        }
+
+        .wing.right {
+        right: -12px;
+        transform: rotate(-18deg);
+        }
+
+        .foot {
+        position: absolute;
+        width: 26px;
+        height: 16px;
+        background: #f6a21a;
+        border-radius: 50%;
+        bottom: -8px;
+        }
+
+        .foot.left { left: 48px; }
+        .foot.right { right: 48px; }
+
+        /* Fishing rod */
+        .rod {
+        position: absolute;
+        width: 8px;
+        height: 220px;
+        background: #f47b34;
+        border-radius: 10px;
+        left: 225px;
+        bottom: 120px;
+        transform: rotate(35deg);
+        transform-origin: bottom;
+        }
+
+        .line {
+        position: absolute;
+        width: 3px;
+        height: 110px;
+        background: #525a66;
+        left: 280px;
+        bottom: 145px;
+        }
+
+        /* Error board */
+        .board {
+        position: absolute;
+        width: 140px;
+        height: 95px;
+        background: #9fd8d5;
+        border-radius: 10px;
+        left: 235px;
+        bottom: 85px;
+        transform: rotate(-12deg);
+        box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .board span {
+        color: #1a1a1a;
+        font-weight: bold;
+        transform: rotate(-5deg);
+        }
+
+        .board .e1 {
+        font-size: 22px;
+        font-family: "Comic Sans MS", cursive;
+        }
+
+        .board .e2 {
+        font-size: 18px;
+        margin-top: 2px;
+        font-family: "Comic Sans MS", cursive;
+        }
+
+        /* Floating circles for decoration */
+        .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        animation: float 6s ease-in-out infinite;
+        }
+
+        .b1 {
+        width: 80px;
+        height: 80px;
+        top: 90px;
+        left: 100px;
+        }
+
+        .b2 {
+        width: 50px;
+        height: 50px;
+        bottom: 120px;
+        right: 100px;
+        animation-delay: 1.5s;
+        }
+
+        .b3 {
+        width: 28px;
+        height: 28px;
+        top: 170px;
+        right: 220px;
+        animation-delay: 0.7s;
+        }
+
+        @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-12px);
+        }
+        }
+
+        @media (max-width: 900px) {
+        .container {
+            flex-direction: column-reverse;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .text-section h1 {
+            font-size: 80px;
+        }
+
+        .text-section h2 {
+            font-size: 30px;
+        }
+
+        .illustration {
+            width: 340px;
+            height: 340px;
+        }
+
+        .penguin {
+            transform: scale(0.9);
+            left: 30px;
+        }
+
+        .rod {
+            left: 185px;
+            bottom: 95px;
+        }
+
+        .line {
+            left: 235px;
+            bottom: 120px;
+        }
+
+        .board {
+            left: 190px;
+            bottom: 58px;
+        }
+
+        .buttons {
+            justify-content: center;
+        }
+        }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="text-section">
+        <h1>404</h1>
+        <h2>Oops! Page Not Found</h2>
+        <p>
+            Looks like this little penguin couldn’t catch the page you were looking for.
+            It may have been moved, deleted, or never existed.
+        </p>
+        <div >
+            <p>Go Back to HomePage!</p>
+        </div>
+        </div>
+
+        <div class="illustration">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+
+        <div class="shadow"></div>
+        <div class="snow"></div>
+
+        <div class="penguin">
+            <div class="body"></div>
+            <div class="belly"></div>
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="beak"></div>
+            <div class="wing left"></div>
+            <div class="wing right"></div>
+            <div class="foot left"></div>
+            <div class="foot right"></div>
+        </div>
+
+        <div class="rod"></div>
+        <div class="line"></div>
+
+        <div class="board">
+            <span class="e1">ERROR</span>
+            <span class="e2">404</span>
+        </div>
+        </div>
+    </div>
+    </body>
+    </html>
